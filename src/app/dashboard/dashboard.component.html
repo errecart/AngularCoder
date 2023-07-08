@@ -1,0 +1,24 @@
+<mat-drawer-container class="example-container" autosize>
+
+    <!-- SideNav  -->
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+    </mat-drawer>
+
+    <!-- Content Wrapper -->
+    <div class="example-sidenav-content">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>My App</span>
+            <span class="example-spacer"></span>
+        </mat-toolbar>
+
+        <main>
+            <app-home></app-home>
+        </main>
+    </div>
+
+
+</mat-drawer-container>
+
