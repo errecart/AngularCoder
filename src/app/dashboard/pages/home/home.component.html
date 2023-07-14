@@ -1,42 +1,11 @@
-<form class="formList" [formGroup]="formModel">
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input 
-        formControlName="name"
-        matInput type="text"
-        name="name"
-        >
-        <mat-error *ngIf="nameControl.hasError('required')"> this field is required</mat-error>
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-label>Last-Name</mat-label>
-        <input 
-        formControlName="lastName"
-        matInput type="text"
-        name="lastName"
-        >
-        <mat-error *ngIf="lastNameControl.hasError('required')"> this field is required</mat-error>
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input 
-        formControlName="email"
-        matInput type="email"
-        name="email"
-        >
-        <mat-error *ngIf="emailControl.hasError('email')">
-            this field is for emails only, it required a "<b>@</b>"
-        </mat-error>
-    </mat-form-field>
-    
-    <button type="submit">Send</button>
 
-    <h4><b>Value</b></h4>
-    <pre>{{ formModel.value | json}}</pre>
+<button class="m-5" (click)="createUser()" mat-flat-button color="primary" type="button">
+    <mat-icon>add</mat-icon>
+    Create User
+</button>
 
-</form>
-
-
-<!-- <p *ngIf="emailControl.invalid">{{errorMessage}}</p> -->
+<app-table 
+    [dataSource]="users"
+    (delete)="deleteUser($event)"
+    (edit)="editUser($event)">
+</app-table>

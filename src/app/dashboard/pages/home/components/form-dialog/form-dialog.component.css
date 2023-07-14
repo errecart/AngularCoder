@@ -1,0 +1,17 @@
+.formList{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(63, 65, 64);
+}
+
+.formList input{
+    height: 17px;
+    margin-top: .8rem;
+}
+
+
+.error{
+    color: red;
+    margin-left: 2rem;
+}
+

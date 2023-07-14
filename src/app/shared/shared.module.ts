@@ -6,11 +6,16 @@ import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
-
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+import { TitleDirective } from './utils/directives/title.directive';
+import { FullNamesPipe } from './utils/pipes/full-names.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TitleDirective,
+    FullNamesPipe
+  ],
   imports: [
     CommonModule
   ],
@@ -20,7 +25,11 @@ import {MatInputModule} from '@angular/material/input';
     MatCardModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    TitleDirective,
+    FullNamesPipe,
   ]
 })
 export class SharedModule { }

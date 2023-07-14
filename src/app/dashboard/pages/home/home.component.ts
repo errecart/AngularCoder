@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { FormDialogComponent } from './components/form-dialog/form-dialog.component'
+import {User} from './models/index'
 
-
-interface userModel {
-  name:FormControl<string | null>;
-  lastName:FormControl<string | null>;
-  email:FormControl<string | null>;
-}
+const ELEMENT_DATA: User[] = [
+  {
+    id:1,
+    name: 'Juan',
+    lastname:'Molina',
+    email: 'some@gmail.com'
+  },
+  {
+    id:2,
+    name: 'Lucas',
+    lastname:'Gomez',
+    email: 'else@gmail.com'
+  }
+];
 
 @Component({
   selector: 'app-home',
@@ -14,17 +24,59 @@ interface userModel {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  public users: User[] = ELEMENT_DATA
 
-  nameControl = new FormControl('',[Validators.required]);  
-  lastNameControl = new FormControl('',[Validators.required]);
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
+  constructor( private matDialog: MatDialog){}
 
-  formModel: FormGroup<userModel> = new FormGroup({
-    name: this.nameControl,
-    lastName: this.lastNameControl,
-    email: this.emailControl,
-  });
+  createUser(): void{
+    const dialogRef = this.matDialog.open(FormDialogComponent)
 
-  
+    dialogRef.afterClosed().subscribe({
+      next: (v)=>{
+        if(v){
+          // this.users.push({
+            //   id: this.users.length + 1,
+            //   name: v.name,
+            //   lastName: v.lastName,
+            //   email: v.email
+            
+            // })
+            this.users = [
+            ...this.users,{
+                id: this.users.length + 1,
+                name: v.name,
+                lastname: v.lastname,
+                email: v.email
+            }
+          ]
+          console.log('we have the value',v);
+        }else{
+          console.log("it's cancel ");
+        }
+      }
+    });
+
+  };
+
+  deleteUser(userDelete: User): void{
+    if(confirm(`Are you sure you want to eliminate ${userDelete.name}`)){
+      this.users = this.users.filter((u) => u.id !== userDelete.id)
+    }
+  }
+
+  editUser(userEdit: User): void{
+    const dialogRef = this.matDialog.open(FormDialogComponent, {
+      data: userEdit
+    })
+    dialogRef.afterClosed().subscribe({
+      next: (data)=>{
+        if(data){
+          this.users = this.users.map((user)=>{
+            return user.id === userEdit.id ? {...user, ...data} : user
+          })
+        }
+      }
+    });
+  }
 
 }

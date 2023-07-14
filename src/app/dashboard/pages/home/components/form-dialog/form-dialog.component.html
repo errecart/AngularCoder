@@ -1,0 +1,45 @@
+<h1 mat-dialog-title appTitle>Create User</h1>
+<div mat-dialog-content>
+    <form class="formList" [formGroup]="formModel">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input  
+                autocomplete="off"
+                formControlName="name"
+                matInput type="text"
+                name="name"
+            >
+            <mat-error *ngIf="nameControl.hasError('required')"> this field is required</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Last-Name</mat-label>
+            <input 
+                autocomplete="off"
+                formControlName="lastname"
+                matInput type="text"
+                name="lastname"
+            >
+            <mat-error *ngIf="lastnameControl.hasError('required')"> this field is required</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input  
+                autocomplete="off"
+                formControlName="email"
+                matInput type="email"
+                name="email"
+            >
+            <mat-error *ngIf="emailControl.hasError('email')">
+                this field is for emails only, it required a "<b>@</b>"
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-action>
+    <button type="submit" mat-button (click)="submit()">Send</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>
