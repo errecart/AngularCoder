@@ -5,7 +5,10 @@
 </button>
 
 <app-table 
-    [dataSource]="users"
-    (delete)="deleteUser($event)"
-    (edit)="editUser($event)">
+    [dataSource]="(users | async) || []"
+    (delete)="onDeleteUser($event)"
+    (edit)="onEditUser($event)"
+    >
 </app-table>
+
+<div>Contador: {{ contador }}</div>

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { User } from '../../models';
+import { User } from '../../../../../core/models';
 
 
 interface userModel {
@@ -15,6 +15,7 @@ interface userModel {
   styleUrls: ['./form-dialog.component.css']
 })
 export class FormDialogComponent {
+  editUser?: User
   nameControl = new FormControl<string | null>('',[Validators.required]);  
   lastnameControl = new FormControl<string | null>('',[Validators.required]);
   emailControl = new FormControl<string | null>('', [Validators.required, Validators.email]);
@@ -30,6 +31,7 @@ export class FormDialogComponent {
     @Inject(MAT_DIALOG_DATA) private data?: User,
     ){
       if(this.data){
+        this.editUser = this.data
         this.nameControl.setValue(this.data.name)
         this.lastnameControl.setValue(this.data.lastname)
         this.emailControl.setValue(this.data.email)

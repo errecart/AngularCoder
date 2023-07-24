@@ -1,82 +1,84 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from './components/form-dialog/form-dialog.component'
-import {User} from './models/index'
+import {User} from '../../../core/models/index'
+import { StudentService } from 'src/app/core/service/user.service';
+import { NotificationService } from 'src/app/core/service/notification.service';
+import { Observable, map} from 'rxjs';
+import { ExampleService } from 'src/app/core/service/example.service';
 
-const ELEMENT_DATA: User[] = [
-  {
-    id:1,
-    name: 'Juan',
-    lastname:'Molina',
-    email: 'some@gmail.com'
-  },
-  {
-    id:2,
-    name: 'Lucas',
-    lastname:'Gomez',
-    email: 'else@gmail.com'
-  }
-];
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  public users: User[] = ELEMENT_DATA
+export class HomeComponent implements OnDestroy, OnInit {
 
-  constructor( private matDialog: MatDialog){}
+  public users: Observable<User[]>;
+  contador: number = 0;
 
-  createUser(): void{
-    const dialogRef = this.matDialog.open(FormDialogComponent)
+  constructor(
+    private matDialog: MatDialog,
+    private studentService: StudentService,
+    private notification: NotificationService,
+    private example: ExampleService
+    )
+    {
+      this.studentService.loadUsers()
+      this.users = this.studentService.getUsers().pipe(
+          map((value)=>value.map((user)=>({...user, lastname: user.lastname.toUpperCase()})))
+          );
+    }
 
-    dialogRef.afterClosed().subscribe({
-      next: (v)=>{
-        if(v){
-          // this.users.push({
-            //   id: this.users.length + 1,
-            //   name: v.name,
-            //   lastName: v.lastName,
-            //   email: v.email
-            
-            // })
-            this.users = [
-            ...this.users,{
-                id: this.users.length + 1,
-                name: v.name,
-                lastname: v.lastname,
-                email: v.email
-            }
-          ]
-          console.log('we have the value',v);
-        }else{
-          console.log("it's cancel ");
+    
+  createUser(): void {
+      this.matDialog.open(FormDialogComponent).afterClosed().subscribe({
+      next: (value) => {
+        if (value) {
+          this.studentService.createUser({
+            name: value.name,
+            email: value.email,
+            lastname: value.lastname,
+          });
+          this.notification.showSuccess('se cargaron los usuarios correctamente')
+        } else {
+          this.notification.showError('Se a cancelado la inscripcion')
         }
       }
     });
-
+  }
+  
+  onEditUser(userEdit: User): void{
+        const dialogRef = this.matDialog.open(FormDialogComponent, {
+          data: userEdit
+        })
+    dialogRef.afterClosed().subscribe({
+      next: (dataUpdate)=>{
+        if(dataUpdate){
+          this.studentService.updateUserById(userEdit.id, dataUpdate)
+        }
+      }
+    });
   };
 
-  deleteUser(userDelete: User): void{
-    if(confirm(`Are you sure you want to eliminate ${userDelete.name}`)){
-      this.users = this.users.filter((u) => u.id !== userDelete.id)
-    }
+  onDeleteUser(userToDelete: User): void{
+    if(confirm(`Are you sure you want to eliminate ${userToDelete.name}`)){
+        this.studentService.deleteUserById(userToDelete.id)
+      }
+  };
+
+  ngOnInit() {
+    this.example.contador$.subscribe((valor) => {
+      this.contador = valor;
+    });
   }
 
-  editUser(userEdit: User): void{
-    const dialogRef = this.matDialog.open(FormDialogComponent, {
-      data: userEdit
-    })
-    dialogRef.afterClosed().subscribe({
-      next: (data)=>{
-        if(data){
-          this.users = this.users.map((user)=>{
-            return user.id === userEdit.id ? {...user, ...data} : user
-          })
-        }
-      }
-    });
+  ngOnDestroy() {
+    this.example.ngOnDestroy();
+    // this.userSubs?.unsubscribe()
+    // para q esto funcione hay q hacer this.userBus = a la funcion de subscripcion
   }
 
 }

@@ -4,10 +4,6 @@
     background-color: rgb(63, 65, 64);
 }
 
-.formList input{
-    height: 17px;
-    margin-top: .8rem;
-}
 
 
 .error{
@@ -15,3 +11,6 @@
     margin-left: 2rem;
 }
 
+.mdc-dialog__surface {
+    overflow: hidden !important;
+}
