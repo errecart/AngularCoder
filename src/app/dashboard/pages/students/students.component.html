@@ -1,0 +1,11 @@
+<button class="m-5" (click)="createStudent()" mat-flat-button color="primary" type="button">
+    <mat-icon>add</mat-icon>
+    Create Student
+</button>
+
+<app-table 
+    [dataSource]="(student | async) || []"
+    (delete)="onDeleteStudent($event)"
+    (edit)="onEditStudent($event)"
+    >
+</app-table>

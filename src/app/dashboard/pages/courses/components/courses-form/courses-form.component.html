@@ -1,0 +1,32 @@
+<h1 mat-dialog-title appTitle>{{editCourse ? 'Edit Course': 'Create Course'}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formCourses" class="formList">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input  
+                autocomplete="off"
+                formControlName="name"
+                matInput type="text"
+                name="name"
+            >
+            <mat-error *ngIf="nameControl.hasError('required')"> this field is required</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Schedule</mat-label>
+            <input 
+                autocomplete="off"
+                formControlName="schedule"
+                matInput type="text"
+                name="schedule"
+            >
+            <mat-error *ngIf="scheduleControl.hasError('required')"> this field is required</mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-action>
+    <button type="submit" mat-button (click)="submit()">Send</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>

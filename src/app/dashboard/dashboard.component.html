@@ -2,20 +2,15 @@
 
     <!-- SideNav  -->
     <mat-drawer #drawer class="example-sidenav" mode="side">
+        <app-toolbar></app-toolbar>
     </mat-drawer>
 
     <!-- Content Wrapper -->
     <div class="example-sidenav-content">
-        <mat-toolbar color="primary">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span>My App</span>
-            <span class="example-spacer"></span>
-        </mat-toolbar>
+        <app-nav-bar [drawer]="drawer"></app-nav-bar>
 
         <main>
-            <app-home></app-home>
+            <router-outlet></router-outlet>
         </main>
     </div>
 

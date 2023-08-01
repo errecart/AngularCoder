@@ -1,0 +1,9 @@
+.courses{
+    display: flex;
+}
+
+.table{
+    margin-left: 2rem;
+    width: 70vw;
+}
+

@@ -1,0 +1,11 @@
+<button class="m-5" (click)="createSubject()" mat-flat-button color="primary" type="button">
+    <mat-icon>add</mat-icon>
+    Create Subject
+</button>
+
+<app-table-subject 
+    [dataSource]="(subject | async) || []"
+    (delete)="deleteSubject($event)"
+    (edit)="editSubject($event)"
+    >
+</app-table-subject>
