@@ -7,6 +7,7 @@ interface StudentModel {
   name:FormControl<string | null>;
   lastname:FormControl<string | null>;
   age:FormControl<number | null>;
+  password:FormControl<string| null>;
   email:FormControl<string | null>;
 }
 
@@ -20,12 +21,14 @@ export class FormComponent {
   nameControl = new FormControl<string | null>('',[Validators.required]);  
   lastnameControl = new FormControl<string | null>('',[Validators.required]);
   ageControl = new FormControl<number | null>(null,[Validators.required]);
+  passwordControl = new FormControl<string | null>('',[Validators.required]);
   emailControl = new FormControl<string | null>('', [Validators.required, Validators.email]);
 
   formModel: FormGroup<StudentModel> = new FormGroup({
     name: this.nameControl,
     lastname: this.lastnameControl,
     age: this.ageControl,
+    password: this.passwordControl,
     email: this.emailControl,
   });
 
@@ -37,6 +40,7 @@ export class FormComponent {
         this.editStudent = this.data
         this.nameControl.setValue(this.data.name)
         this.lastnameControl.setValue(this.data.lastname)
+        this.passwordControl.setValue(this.data.password)
         this.ageControl.setValue(this.data.age)
         this.emailControl.setValue(this.data.email)
       }

@@ -1,0 +1,20 @@
+{
+  "students": [],
+  "courses": [
+    {
+      "name": "juu",
+      "schedule": "fdsfdsf",
+      "token": "nuHA9",
+      "id": 1
+    }
+  ],
+  "subjects": [
+    {
+      "name": "j",
+      "timeW": "15",
+      "price": "12",
+      "token": "OZ0tC",
+      "id": 1
+    }
+  ]
+}

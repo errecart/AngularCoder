@@ -4,6 +4,7 @@ import { SubjectsComponent } from './subjects.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TableSubjectComponent } from './components/table-subject/table-subject.component';
 import { FormSubjectsComponent } from './components/form-subjects/form-subjects.component';
+import { SubjectsRoutingModule } from './subjects-routing.module';
 
 
 
@@ -18,6 +19,7 @@ import { FormSubjectsComponent } from './components/form-subjects/form-subjects.
   imports: [
     CommonModule,
     SharedModule,
+    SubjectsRoutingModule
   ],
   exports:[
     SubjectsComponent

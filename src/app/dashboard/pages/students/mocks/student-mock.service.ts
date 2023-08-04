@@ -8,6 +8,7 @@ const studentView: Observable<User[]> = of([
     name: 'FAKE',
     age: 789,
     lastname:'SOME',
+    password:'loca',
     email: 'some@gmail.com'
   },
   {
@@ -15,6 +16,7 @@ const studentView: Observable<User[]> = of([
     name: 'FAKE',
     lastname:'ELSE',
     age: 790,
+    password:'loca',
     email: 'else@gmail.com'
   }
 ]).pipe(delay(1000))

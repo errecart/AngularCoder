@@ -34,6 +34,7 @@ export class StudentsComponent {
             name: value.name,
             email: value.email,
             age: value.age,
+            password: value.password,
             lastname: value.lastname,
           })
         }else{
@@ -57,7 +58,8 @@ export class StudentsComponent {
   };
 
   onDeleteStudent(studentToDelete: User): void{
-    if(confirm(`Are you sure you want to eliminate ${studentToDelete.name}`)){
+    const note = this.notification.showNotification(`Are you sure you want to eliminate ${studentToDelete.name}`)
+    if({note}){
         this.studentService.deleteStudentById(studentToDelete.id)
       }
   };

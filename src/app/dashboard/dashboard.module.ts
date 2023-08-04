@@ -8,9 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './layouts/nav-bar/nav-bar.component';
 import { ToolbarComponent } from './layouts/toolbar/toolbar.component';
-import { CoursesModule } from './pages/courses/courses.module';
-import { StudentsModule } from './pages/students/students.module';
-import { SubjectsModule } from './pages/subjects/subjects.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
+
 
 
 @NgModule({
@@ -21,14 +20,12 @@ import { SubjectsModule } from './pages/subjects/subjects.module';
   ],
   imports: [
     CommonModule,
+    DashboardRoutingModule, //Modulo de rutas dashboard
     MatSidenavModule,
     MatToolbarModule,
     MatFormFieldModule,
     SharedModule,
     RouterModule,
-    CoursesModule,
-    StudentsModule,
-    SubjectsModule
 
   ],
   exports:[

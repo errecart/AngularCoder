@@ -19,6 +19,11 @@
       <td mat-cell *matCellDef="let element"> {{element.age}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef> Password: </th>
+      <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+    </ng-container>
+
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="email">

@@ -47,7 +47,9 @@ export class CoursesComponent implements OnInit {
   }
 
   delete(id: number): void{
-    this.coursesService.deleteById(id)
+    if(confirm('Are you sure you want to eliminate this course?')){
+      this.coursesService.deleteById(id)
+    }
   }
 
   edit(courseEdit: courses): void{

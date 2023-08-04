@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CoursesFormComponent } from './components/courses-form/courses-form.component';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CoursesFormComponent } from './components/courses-form/courses-form.com
     SharedModule,
     RouterModule,
     MatDialogModule,
+    CoursesRoutingModule
   ],
   exports:[
     CoursesComponent,

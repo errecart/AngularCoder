@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, take} from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, take} from 'rxjs';
 import { courses, coursesCreate, updateCourseData } from '../../../core/models';
+import { HttpClient } from '@angular/common/http';
+import { NotificationService } from 'src/app/core/service/notification.service';
+import { enviroment } from 'src/enviroments/envirotent';
+import { random } from 'src/app/shared/utils/helps';
 
 
 @Injectable({
@@ -11,17 +15,20 @@ export class CoursesService {
   private _courses$ = new BehaviorSubject<courses[]>([]);
   private courses$ = this._courses$.asObservable()
 
-  loadCourses(): void{
-    this._courses$.next([
-      {id: 1, name: 'HTML', schedule:"8:00 - 10:00"},
-      {id: 2, name: 'CSS',schedule:"8:00 - 10:00"},
-      {id: 3, name: 'JAVASCRIPT',schedule:"12:00 - 14:00"},
-      {id: 4, name: 'REACT',schedule:"18:00 - 20:30"},
-      {id: 5, name: 'ANGULAR',schedule:"18:00 - 20:30"},
-      {id: 6, name: 'VUE.JS',schedule:"18:00 - 20:30"},
-      {id: 7, name: 'PYTHON', schedule:"8:00 - 10:00"},
+    constructor(
+    private httpClient: HttpClient,
+    private notification: NotificationService
+    ) {}
 
-    ])
+  loadCourses(): void{
+    this.httpClient.get<courses[]>(enviroment.baseApiUrl + '/courses').subscribe({
+      next:(resp)=>{
+        this._courses$.next(resp)
+      },
+      error:()=>{
+        this.notification.showError('Error loading the Courses')
+      }
+    })
   }
 
   getCourses(): Observable<courses[]>{
@@ -29,29 +36,43 @@ export class CoursesService {
   }
 
   inscriptCourse(course: coursesCreate): void{
-    this.courses$.pipe(take(1)).subscribe({
-      next: (c1) =>{
-        this._courses$.next([...c1, {...course, id: c1.length + 1}])
-      }
-    });
-  }
-
-  deleteById(id: number): void{
-    this._courses$.pipe(take(1)).subscribe({
-      next: (c) =>{
-        this._courses$.next(c.filter((co) => co.id !== id))
-      }
-    })
-  }
-
-  updateCourseById(id: number, newData: updateCourseData): void{
-    this.courses$.pipe(take(1)).subscribe({
-      next:(array1) =>{
-        this._courses$.next(
-          array1.map((course)=> course.id === id ? {...course,...newData}: course)
+    const token = random(5)
+    this.httpClient.post<courses>(enviroment.baseApiUrl + '/courses',{...course, token})
+      .pipe(
+        mergeMap((coursesCreate) => this.courses$.pipe(
+        take(1),
+        map(
+            (arrayActual) => [...arrayActual, coursesCreate])
         )
-      }
-    })
+        )
+      ).subscribe({
+        next: (arrayActualizado) => {
+          this._courses$.next(arrayActualizado);
+        }
+      })
   }
+
+  
+  updateCourseById(id: number, newData: updateCourseData): void{
+    this.httpClient.put(enviroment.baseApiUrl + '/courses/' + id, newData).subscribe({
+      next: () => this.loadCourses(),
+    })
+    }
+
+
+
+    deleteById(id: number): void{
+      this.httpClient.delete(enviroment.baseApiUrl + '/courses/' + id)
+      .pipe(
+        mergeMap(() => this.courses$.pipe(
+          take(1), 
+          map((arrayC) => arrayC.filter((cId)=> cId.id !== id)
+          )
+        )
+        )
+      ).subscribe({
+        next: (arrayAct)=> this._courses$.next(arrayAct)
+      })
+    }
 
 }

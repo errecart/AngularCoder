@@ -6,8 +6,8 @@ import { TableComponent } from './components/table/table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StudentsDetailsComponent } from './components/students-details/students-details.component';
 import { RouterModule } from '@angular/router';
-import { StudentService } from './student.service';
-import { StudentMockService } from './mocks/student-mock.service';
+import {random} from 'src/app/shared/utils/helps'
+import { StudentsRoutingModule } from './students-routing.module';
 
 
 
@@ -23,16 +23,18 @@ import { StudentMockService } from './mocks/student-mock.service';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    StudentsRoutingModule,
+    
   ],
   exports:[
     StudentsComponent
   ],
-  providers:[
-    {
-      provide:StudentService,
-      useClass:StudentMockService
-    }
-  ]
+  // providers:[
+  //   {
+  //     provide:StudentService,
+  //     useClass:StudentMockService
+  //   }
+  // ]
 })
 export class StudentsModule { }

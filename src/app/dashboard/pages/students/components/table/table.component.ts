@@ -19,7 +19,7 @@ goToInvalidProductDetails() {
 throw new Error('Method not implemented.');
 }
 
-  displayedColumns: string[] = ['id', 'name', 'email', 'age', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'password', 'age', 'actions'];
 
   @Input()
   dataSource: User[] = [];

@@ -33,6 +33,17 @@
             >
             <mat-error *ngIf="ageControl.hasError('required')"> this field is required</mat-error>
         </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input 
+                autocomplete="off"
+                formControlName="password"
+                matInput type="text"
+                name="password"
+            >
+            <mat-error *ngIf="passwordControl.hasError('required')"> this field is required</mat-error>
+        </mat-form-field>
         
         <mat-form-field>
             <mat-label>Email</mat-label>
