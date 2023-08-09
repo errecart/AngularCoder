@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { courses } from 'src/app/core/models';
+import { courses } from 'src/app/dashboard/pages/models';
 import { Observable } from 'rxjs';
 import { CoursesService } from 'src/app/dashboard/pages/courses/courses.service';
 import { NotificationService } from 'src/app/core/service/notification.service';

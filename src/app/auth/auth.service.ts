@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, take } from 'rxjs';
-import { User } from '../core/models';
+import { User } from '../dashboard/pages/models';
 import { NotificationService } from '../core/service/notification.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -45,11 +45,13 @@ export class AuthService {
     }).subscribe({
       next:(resp) =>{
         if(resp.length){
-          this._authUser$.next(resp[0])
+          const authStudent = resp[0]
+          this._authUser$.next(authStudent)
           this.router.navigate(['/dashboard']);
+          localStorage.setItem('token',authStudent.token)
         }else{
           this.notification.showError('email or password invalid, you cant pass');
-          this.router.navigate([null]);
+          this._authUser$.next(null);
         }
       },
       error: (error)=>{

@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   public emailControl = new FormControl('some@gmail.com', [Validators.required, Validators.email]);
-  public passwordControl = new FormControl('', [Validators.required]);
+  public passwordControl = new FormControl('123', [Validators.required]);
 
   public loginForm = new FormGroup({
     email: this.emailControl,
@@ -19,7 +19,6 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   login(): void {
-
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
     } else {

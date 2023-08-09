@@ -4,7 +4,8 @@ export interface User{
     lastname: string
     password: string
     age: number
-    email: string 
+    email: string
+    token: string
 }
 
 export interface createUserData{

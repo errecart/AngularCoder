@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, map } from 'rxjs';
-import { User } from 'src/app/core/models';
+import { User } from 'src/app/dashboard/pages/models';
 import { StudentService } from './student.service';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { FormComponent } from './components/form/form.component';

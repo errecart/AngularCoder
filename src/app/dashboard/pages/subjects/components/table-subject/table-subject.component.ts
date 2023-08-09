@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { subject } from 'src/app/core/models';
+import { subject } from 'src/app/dashboard/pages/models';
 export interface PeriodicElement {
   id: number;
   name: string;

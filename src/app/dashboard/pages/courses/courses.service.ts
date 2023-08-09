@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, mergeMap, take} from 'rxjs';
-import { courses, coursesCreate, updateCourseData } from '../../../core/models';
+import { courses, coursesCreate, updateCourseData } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { enviroment } from 'src/enviroments/envirotent';

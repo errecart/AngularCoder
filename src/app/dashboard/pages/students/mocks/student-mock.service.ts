@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, delay, of } from 'rxjs';
-import { User } from 'src/app/core/models';
+import { User } from 'src/app/dashboard/pages/models';
 
 const studentView: Observable<User[]> = of([
   {

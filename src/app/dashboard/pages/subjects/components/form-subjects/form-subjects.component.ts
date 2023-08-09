@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { subject } from 'src/app/core/models';
+import { subject } from 'src/app/dashboard/pages/models';
 
 interface subjectModel {
   name:FormControl<string | null>;

@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { subject } from 'src/app/core/models';
+import { subject } from 'src/app/dashboard/pages/models';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { SubjectService } from './subject.service';
 import { FormSubjectsComponent } from './components/form-subjects/form-subjects.component';

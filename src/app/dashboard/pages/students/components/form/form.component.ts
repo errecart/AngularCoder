@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { User } from 'src/app/core/models';
+import { User } from 'src/app/dashboard/pages/models';
 
 interface StudentModel {
   name:FormControl<string | null>;

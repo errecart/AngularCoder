@@ -1,5 +1,15 @@
 {
-  "students": [],
+  "students": [
+    {
+      "name": "m",
+      "email": "some@gmail.com",
+      "age": "3",
+      "password": "123",
+      "lastname": "jhj",
+      "token": "ewgFVXF30X",
+      "id": 1
+    }
+  ],
   "courses": [
     {
       "name": "juu",
