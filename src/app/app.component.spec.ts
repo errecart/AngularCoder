@@ -1,14 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('AppComponent', () => {
 
   //antes de cada prueba
   //TestBed.configureTestingModule => configura el modulo de pruebas
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
+    imports: [RouterTestingModule, StoreModule.forRoot(provideMockStore),],
+    declarations: [AppComponent],
   }));
 
   //define cada caso de pruebas, tiene q haber muchos

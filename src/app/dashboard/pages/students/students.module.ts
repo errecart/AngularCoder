@@ -6,10 +6,7 @@ import { TableComponent } from './components/table/table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StudentsDetailsComponent } from './components/students-details/students-details.component';
 import { RouterModule } from '@angular/router';
-import {random} from 'src/app/shared/utils/helps'
 import { StudentsRoutingModule } from './students-routing.module';
-
-
 
 
 @NgModule({
@@ -18,7 +15,7 @@ import { StudentsRoutingModule } from './students-routing.module';
     FormComponent,
     TableComponent,
     StudentsDetailsComponent,
-
+    
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,8 @@ describe('AuthService',()=>{
         TestBed.configureTestingModule({
             imports:[HttpClientTestingModule,RouterTestingModule],
             providers:[
-                MockProvider(Router)
+                MockProvider(Router),
+                
             ]
         });
         service = TestBed.inject(AuthService)

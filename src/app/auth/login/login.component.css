@@ -1,0 +1,24 @@
+main{
+    background-color: #d13473;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log{
+    background-color:#303030;
+    width: 45rem;
+    height: 20rem;
+    padding: 10px;
+    border-radius: 7px;
+    border: solid 1px white;
+}
+
+.log h1{
+    color: white;
+    margin-left: .5rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+

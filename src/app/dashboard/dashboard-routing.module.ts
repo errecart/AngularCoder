@@ -11,6 +11,10 @@ import { StudentsComponent } from "./pages/students/students.component";
 
     RouterModule.forChild([
     {
+        path: 'home',
+        loadChildren: () => import('./pages/home/home.module').then((tm) => tm.HomeModule)
+    },
+    {
         path: 'students',
         loadChildren: () => import('./pages/students/students.module').then((tm) => tm.StudentsModule)
     },

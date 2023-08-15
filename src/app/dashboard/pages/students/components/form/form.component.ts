@@ -18,11 +18,11 @@ interface StudentModel {
 })
 export class FormComponent {
   editStudent?: User
-  nameControl = new FormControl<string | null>('',[Validators.required]);  
-  lastnameControl = new FormControl<string | null>('',[Validators.required]);
-  ageControl = new FormControl<number | null>(null,[Validators.required]);
-  passwordControl = new FormControl<string | null>('',[Validators.required]);
-  emailControl = new FormControl<string | null>('', [Validators.required, Validators.email]);
+  public nameControl = new FormControl<string | null>('',[Validators.required]);  
+  public lastnameControl = new FormControl<string | null>('',[Validators.required]);
+  public ageControl = new FormControl<number | null>(null,[Validators.required]);
+  public passwordControl = new FormControl<string | null>('',[Validators.required]);
+  public emailControl = new FormControl<string | null>('', [Validators.required, Validators.email]);
 
   formModel: FormGroup<StudentModel> = new FormGroup({
     name: this.nameControl,
@@ -31,6 +31,7 @@ export class FormComponent {
     password: this.passwordControl,
     email: this.emailControl,
   });
+    textForm: any;
 
   constructor(
     private dialogRef: MatDialogRef<FormComponent>,

@@ -5,6 +5,8 @@ import { NotificationService } from '../core/service/notification.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Loginload } from './models';
+import { Store } from '@ngrx/store';
+// import { authAction } from '../store/auth/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +18,12 @@ export class AuthService {
   constructor(
     private notification: NotificationService,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private store: Store
     ) {}
 
 
   isAuthenticated(): Observable<boolean> {
-    // return this.authUser$.pipe(
-    //   take(1),
-    //   map((user) => !!user),
-    // );
     return this.httpClient.get<User[]>('http://localhost:3000/students', {
       params:{
         token: localStorage.getItem('token') || '',
@@ -47,11 +46,13 @@ export class AuthService {
         if(resp.length){
           const authStudent = resp[0]
           this._authUser$.next(authStudent)
+          // this.store.dispatch(authAction.setAuthUser({data: authStudent}))
           this.router.navigate(['/dashboard']);
           localStorage.setItem('token',authStudent.token)
         }else{
           this.notification.showError('email or password invalid, you cant pass');
           this._authUser$.next(null);
+          // this.store.dispatch(authAction.setAuthUser({data: null}))
         }
       },
       error: (error)=>{
@@ -63,6 +64,10 @@ export class AuthService {
       }
     });
   }
+
+  // public logOut():void{
+  //   this.store.dispatch(authAction.setAuthUser({data:null}))
+  // }
 
 
 }

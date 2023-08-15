@@ -1,4 +1,8 @@
 
+<button (click)="createCourses()" class="m-1 createC" mat-flat-button color="primary" type="button">
+    <mat-icon>add</mat-icon> Inscription to Course
+</button>
+
 <h2 appTitle>Courses</h2>
 
 <div class="table">
@@ -39,9 +43,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <button (click)="createCourses()" class="m-1" mat-flat-button color="primary" type="button">
-        <mat-icon>add</mat-icon> Inscription to Course
-    </button>
 
 
 

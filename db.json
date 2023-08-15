@@ -8,6 +8,15 @@
       "lastname": "jhj",
       "token": "ewgFVXF30X",
       "id": 1
+    },
+    {
+      "name": "luca",
+      "email": "hola@gmail.com",
+      "age": "15",
+      "password": "456",
+      "lastname": "jose",
+      "token": "Q9SVrwD4uG",
+      "id": 2
     }
   ],
   "courses": [
