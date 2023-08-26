@@ -1,0 +1,26 @@
+<button mat-icon-button routerLink=".."></button>
+
+<h2>Category's Detail: {{categoryName$ | async}}</h2>
+
+<table mat-table [dataSource]="subject">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id: </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name: </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description: </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

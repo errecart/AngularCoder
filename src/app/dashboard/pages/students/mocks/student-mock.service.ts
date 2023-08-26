@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, delay, of } from 'rxjs';
-import { User } from 'src/app/dashboard/pages/models';
+import { User } from '../models/indexStu';
 
 const studentView: Observable<User[]> = of([
   {
@@ -9,7 +9,8 @@ const studentView: Observable<User[]> = of([
     age: 789,
     lastname:'SOME',
     password:'loca',
-    email: 'some@gmail.com'
+    email: 'some@gmail.com',
+    token:''
   },
   {
     id:2,
@@ -17,7 +18,8 @@ const studentView: Observable<User[]> = of([
     lastname:'ELSE',
     age: 790,
     password:'loca',
-    email: 'else@gmail.com'
+    email: 'else@gmail.com',
+    token:''
   }
 ]).pipe(delay(1000))
 

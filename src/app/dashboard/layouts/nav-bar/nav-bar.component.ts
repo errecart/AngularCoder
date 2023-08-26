@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
-import { User } from '../../pages/models';
+
 import { AuthService } from 'src/app/auth/auth.service';
 import { Store } from '@ngrx/store';
-// import { selectAuthUser } from 'src/app/store/auth/auth.selector';
+import { selectAuthStudent } from 'src/app/store/auth/auth.selector';
+import { student } from '../../pages/students/models/indexStu';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,12 +16,12 @@ export class NavBarComponent {
   @Input()
   public drawer?: MatDrawer;
 
-  // public authUser$: Observable<User | null> 
+  public authstudent$: Observable<student | null> 
 
   constructor(
     private authService: AuthService,
     private store:Store
   ){
-    // this.authUser$ = this.store.select(selectAuthUser)
+    this.authstudent$ = this.store.select(selectAuthStudent)
   }
 }

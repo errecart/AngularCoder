@@ -1,0 +1,28 @@
+
+<div  mat-dialog-content>
+    <form class="flex flex-column">
+        <h1 mat-dialog-title>Enrolled</h1>
+        <mat-form-field>
+            <mat-label>Subject</mat-label>
+            <mat-select [formControl]="subjectIdControl">
+                <mat-option [value]="subject.id" *ngFor="let subject of subjectOptions$ | async">
+                    {{subject.name}} - {{subject.price | currency}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Inscription</mat-label>
+            <mat-select [formControl] ="inscriptionIdControl">
+                <mat-option [value]="inscriptions.id" *ngFor="let inscriptions of inscriptionOptions$ | async">
+                    {{inscriptions.name + ' ' + inscriptions.lastname}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+</div>
+<div mat-dialog-action>
+    <button (click)="submit()" type="submit" mat-button>Send</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>

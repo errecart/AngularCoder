@@ -2,4 +2,15 @@
     <mat-icon>arrow_back</mat-icon>
 </button>
 
-<p>students-details works!</p>
+<mat-card *ngIf="studentDetails$" class="example-card" >
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Students Details</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="non-Photo os the student">
+    <mat-card-content>
+        <p>Name:{{studentDetails$}}</p>
+        <p>Lastname:</p>
+        <p>Age:</p>
+    </mat-card-content>
+  </mat-card>

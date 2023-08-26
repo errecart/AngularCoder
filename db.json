@@ -7,6 +7,7 @@
       "password": "123",
       "lastname": "jhj",
       "token": "ewgFVXF30X",
+      "role": "admin",
       "id": 1
     },
     {
@@ -16,7 +17,18 @@
       "password": "456",
       "lastname": "jose",
       "token": "Q9SVrwD4uG",
+      "role": "admin",
       "id": 2
+    },
+    {
+      "name": "jose",
+      "email": "else@gmail.com",
+      "age": "18",
+      "password": "789",
+      "lastname": "de la cruz",
+      "token": "Q9SVrwD4uI",
+      "role": "student",
+      "id": 3
     }
   ],
   "courses": [
@@ -29,11 +41,62 @@
   ],
   "subjects": [
     {
-      "name": "j",
-      "timeW": "15",
+      "name": "Language",
+      "timeW": "15hrs",
       "price": "12",
       "token": "OZ0tC",
+      "id": 1,
+      "categoryId": 1
+    },
+    {
+      "name": "Math",
+      "timeW": "16hrs",
+      "price": "15",
+      "token": "f5fdk",
+      "id": 2,
+      "categoryId": 2
+    }
+  ],
+  "inscriptions": [
+    {
+      "name": "j",
+      "lastname": "j",
+      "email": "j@email.com",
       "id": 1
+    },
+    {
+      "name": "g",
+      "lastname": "g",
+      "email": "g@email.com",
+      "id": 2
+    },
+    {
+      "name": "h",
+      "lastname": "h",
+      "email": "h@email.com",
+      "id": 3
+    }
+  ],
+  "enrolled": [
+    {
+      "id": 1,
+      "subjectId": 1,
+      "inscriptionId": 3
+    },
+    {
+      "id": 2,
+      "subjectId": 2,
+      "inscriptionId": 1
+    },
+    {
+      "id": 3,
+      "subjectId": 2,
+      "inscriptionId": 3
+    },
+    {
+      "inscriptionId": 2,
+      "subjectId": 1,
+      "id": 4
     }
   ]
 }

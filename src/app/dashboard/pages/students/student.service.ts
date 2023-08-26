@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, mergeMap,take } from 'rxjs';
-import { User, createUserData, updateUserData } from 'src/app/dashboard/pages/models';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { random } from 'src/app/shared/utils/helps';
 import { enviroment } from 'src/enviroments/envirotent';
+import { createStudentData, student, updateStudentData } from './models/indexStu';
 
 
 @Injectable({
@@ -12,8 +12,8 @@ import { enviroment } from 'src/enviroments/envirotent';
 })
 export class StudentService {
 
-  private _users$ = new BehaviorSubject<User[]>([]);
-  private users$ = this._users$.asObservable();
+  private _students$ = new BehaviorSubject<student[]>([]);
+  private students$ = this._students$.asObservable();
 
   constructor(
     private httpClient: HttpClient,
@@ -21,9 +21,9 @@ export class StudentService {
     ) {}
 
   loadStudent(): void{
-    this.httpClient.get<User[]>(enviroment.baseApiUrl + '/students').subscribe({
+    this.httpClient.get<student[]>(enviroment.baseApiUrl + '/students').subscribe({
       next:(resp) => {
-        this._users$.next(resp);
+        this._students$.next(resp);
       },
       error:()=>{
         this.notification.showError('Error loading the students')
@@ -31,15 +31,19 @@ export class StudentService {
     })
   }
 
-  getStudent(): Observable<User[]>{
-    return this.users$
+  getStudent(): Observable<student[]>{
+    return this.students$
   }
 
-  createStudent(student: createUserData): void {
+  getStudentById(id: number): Observable<student> {
+    return this.httpClient.get<student>(enviroment.baseApiUrl + '/students/' + id);
+  }
+
+  createStudent(student: createStudentData): void {
     const token = random(10)
-      this.httpClient.post<User>(enviroment.baseApiUrl + '/students',{...student, token})
+      this.httpClient.post<student>(enviroment.baseApiUrl + '/students',{...student, token})
         .pipe(
-          mergeMap((studentCreate) => this.users$.pipe(
+          mergeMap((studentCreate) => this.students$.pipe(
           take(1),
           map(
             (arrayActual) => [...arrayActual, studentCreate])
@@ -47,12 +51,12 @@ export class StudentService {
           )
       ).subscribe({
         next: (arrayActualizado) => {
-          this._users$.next(arrayActualizado);
+          this._students$.next(arrayActualizado);
         }
       })
-}
+  }
 
-  updateStudentById(id: number, newArray: updateUserData): void{
+  updateStudentById(id: number, newArray: updateStudentData): void{
     this.httpClient.put(enviroment.baseApiUrl + '/students/' + id, newArray).subscribe({
       next: () => this.loadStudent(),
     })
@@ -61,16 +65,15 @@ export class StudentService {
   deleteStudentById(id: number): void {
     this.httpClient.delete(enviroment.baseApiUrl + '/students/' + id)
     .pipe(
-      mergeMap(() => this.users$.pipe(
+      mergeMap(() => this.students$.pipe(
         take(1), 
         map((arrayA) => arrayA.filter((sId)=> sId.id !== id)
         )
       )
       )
     ).subscribe({
-      next: (arrayAct)=> this._users$.next(arrayAct)
+      next: (arrayAct)=> this._students$.next(arrayAct)
     })
-    
   }
 
 }

@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { User } from 'src/app/dashboard/pages/models';
+import { student } from '../../models/indexStu';
+
 
 interface StudentModel {
   name:FormControl<string | null>;
@@ -9,6 +10,7 @@ interface StudentModel {
   age:FormControl<number | null>;
   password:FormControl<string| null>;
   email:FormControl<string | null>;
+  token: FormControl<string | null>
 }
 
 @Component({
@@ -17,25 +19,28 @@ interface StudentModel {
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-  editStudent?: User
-  public nameControl = new FormControl<string | null>('',[Validators.required]);  
-  public lastnameControl = new FormControl<string | null>('',[Validators.required]);
-  public ageControl = new FormControl<number | null>(null,[Validators.required]);
-  public passwordControl = new FormControl<string | null>('',[Validators.required]);
-  public emailControl = new FormControl<string | null>('', [Validators.required, Validators.email]);
-
+  editStudent?: student
+  public nameControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);  
+  public lastnameControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(5),Validators.maxLength(12)]);
+  public ageControl = new FormControl<number | null>(null,[Validators.required,Validators.min(15)]);
+  public passwordControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(8),Validators.maxLength(16)]);
+  public emailControl = new FormControl<string | null>('', [Validators.required,Validators.email,Validators.minLength(10)]);
+  public roleControl = new FormControl<string | null>(null, Validators.required)
+  public tokenControl = new FormControl<string | null>('')
+  
   formModel: FormGroup<StudentModel> = new FormGroup({
     name: this.nameControl,
     lastname: this.lastnameControl,
     age: this.ageControl,
     password: this.passwordControl,
     email: this.emailControl,
+    token: this.tokenControl
   });
     textForm: any;
 
   constructor(
     private dialogRef: MatDialogRef<FormComponent>,
-    @Inject(MAT_DIALOG_DATA) private data?: User,
+    @Inject(MAT_DIALOG_DATA) private data?: student,
     ){
       if(this.data){
         this.editStudent = this.data
@@ -44,6 +49,7 @@ export class FormComponent {
         this.passwordControl.setValue(this.data.password)
         this.ageControl.setValue(this.data.age)
         this.emailControl.setValue(this.data.email)
+        this.roleControl.setValue(this.data.role)
       }
   }
 
@@ -55,7 +61,6 @@ export class FormComponent {
       this.dialogRef.close(this.formModel.value)
     }
   }
-
 
 }
 

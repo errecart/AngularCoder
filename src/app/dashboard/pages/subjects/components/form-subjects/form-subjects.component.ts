@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { subject } from 'src/app/dashboard/pages/models';
+import { subject } from '../../models/indexSub';
+
 
 interface subjectModel {
   name:FormControl<string | null>;
@@ -17,8 +18,8 @@ interface subjectModel {
 export class FormSubjectsComponent {
     editSubject?: subject
     nameControl = new FormControl<string | null>('',[Validators.required]);
-    timeWControl = new FormControl<number | null>(null,[Validators.required]);
-    priceControl = new FormControl<number | null>(null,[Validators.required]);
+    timeWControl = new FormControl<number | null>(null,[Validators.required, Validators.minLength(7)]);
+    priceControl = new FormControl<number | null>(null,[Validators.required,Validators.min(10)]);
 
     formSModel: FormGroup<subjectModel> = new FormGroup({
       name: this.nameControl,

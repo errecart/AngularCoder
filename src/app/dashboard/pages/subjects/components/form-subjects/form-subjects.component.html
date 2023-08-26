@@ -1,6 +1,6 @@
-<h1 mat-dialog-title appTitle>{{editSubject ? 'Edit User': 'Create User'}}</h1>
-<div mat-dialog-content>
-    <form class="formList" [formGroup]="formSModel">
+<div class="" mat-dialog-content>
+    <form class="formSub flex flex-column" [formGroup]="formSModel">
+        <h1 mat-dialog-title appTitle>{{editSubject ? 'Edit Subject': 'Create Subject'}}</h1>
         <mat-form-field>
             <mat-label>Name</mat-label>
             <input  
@@ -21,7 +21,8 @@
                 matInput type="text"
                 name="timeW"
             >
-            <mat-error *ngIf="timeWControl.hasError('required')"> this field is required</mat-error>
+            <mat-error *ngIf="timeWControl.hasError('required')">This field is required</mat-error>
+            <mat-error *ngIf="timeWControl.hasError('minlength')">A complete schedule is needed, example: 2:00 hrs</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -32,6 +33,7 @@
                 matInput type="text"
                 name="price"
             >
+            <mat-error *ngIf="priceControl.hasError('min')">price need to be higher than USD$10</mat-error>
             <mat-error *ngIf="priceControl.hasError('required')"> this field is required</mat-error>
         </mat-form-field>
 

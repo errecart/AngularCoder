@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
-import { subject, subjectCreate, updateSubjectData } from 'src/app/dashboard/pages/models';
+import { BehaviorSubject, Observable, Subject, map, mergeMap, take } from 'rxjs';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { random } from 'src/app/shared/utils/helps';
 import { enviroment } from 'src/enviroments/envirotent';
+import { subject, subjectCreate, updateSubjectData } from './models/indexSub';
 
 
 @Injectable({
@@ -17,7 +17,8 @@ export class SubjectService {
 
     constructor(
     private httpClient: HttpClient,
-    private notification: NotificationService
+    private notification: NotificationService,
+
     ) {}
 
   loadSubject(): void{
@@ -70,6 +71,10 @@ export class SubjectService {
     ).subscribe({
       next: (arrayAct)=> this._subject$.next(arrayAct)
     })
+  }
+
+  getSubjectByCategoryId(categoryId: number): Observable<subject[]> {
+    return this.httpClient.get<subject[]>(enviroment.baseApiUrl + `/subjects?categoryId=${categoryId}`)
   }
 
   

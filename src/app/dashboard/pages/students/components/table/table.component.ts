@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { User } from 'src/app/dashboard/pages/models';
+import { student } from '../../models/indexStu';
+
 
 export interface PeriodicElement {
   id: number;
@@ -15,18 +16,15 @@ export interface PeriodicElement {
   styleUrls: ['./table.component.css']
 })
 export class TableComponent {
-goToInvalidProductDetails() {
-throw new Error('Method not implemented.');
-}
 
   displayedColumns: string[] = ['id', 'name', 'email', 'password', 'age', 'actions'];
 
   @Input()
-  dataSource: User[] = [];
+  dataSource: student[] = [];
 
   @Output()
-  delete = new EventEmitter<User>();
+  delete = new EventEmitter<student>();
 
   @Output()
-  edit = new EventEmitter<User>();
+  edit = new EventEmitter<student>();
 }

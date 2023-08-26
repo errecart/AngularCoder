@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { selectAuthRole } from 'src/app/store/auth/auth.selector';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,14 +12,19 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class ToolbarComponent {
 
+  public role: Observable<'admin' | 'student' | undefined>
+
   constructor(
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private authService: AuthService
-  ){}
+    private authService: AuthService,
+    private store: Store
+  ){
+    this.role = this.store.select(selectAuthRole)
+  }
 
   logOut():void{
-    // this.authService.logOut()
+    this.authService.logOut()
     this.router.navigate(['auth','login'], {})
   }
 }

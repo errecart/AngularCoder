@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, map } from 'rxjs';
-import { User } from 'src/app/dashboard/pages/models';
+import { student } from 'src/app/dashboard/pages/students/models/indexStu';
 import { StudentService } from './student.service';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { FormComponent } from './components/form/form.component';
@@ -13,7 +13,7 @@ import { FormComponent } from './components/form/form.component';
 })
 export class StudentsComponent {
 
-  public student: Observable<User[]>
+  public student: Observable<student[]>
 
   constructor(
     private matDialog: MatDialog,
@@ -44,7 +44,7 @@ export class StudentsComponent {
     })
   }
 
-  onEditStudent(studentEdit: User): void{
+  onEditStudent(studentEdit: student): void{
     const dialogRef = this.matDialog.open(FormComponent, {
       data: studentEdit
     })
@@ -57,7 +57,7 @@ export class StudentsComponent {
     });
   };
 
-  onDeleteStudent(studentToDelete: User): void{
+  onDeleteStudent(studentToDelete: student): void{
     const note = this.notification.showNotification(`Are you sure you want to eliminate ${studentToDelete.name}`)
     if({note}){
         this.studentService.deleteStudentById(studentToDelete.id)

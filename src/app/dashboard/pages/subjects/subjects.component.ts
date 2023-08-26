@@ -1,10 +1,12 @@
 import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { subject } from 'src/app/dashboard/pages/models';
+
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { SubjectService } from './subject.service';
 import { FormSubjectsComponent } from './components/form-subjects/form-subjects.component';
+import { subject } from './models/indexSub';
+import { Store } from '@ngrx/store';
 
 
 @Component({
@@ -16,10 +18,12 @@ export class SubjectsComponent {
 
   public subject: Observable<subject[]>
 
+
   constructor(
     private matDialog: MatDialog,
     private subjectService: SubjectService,
-    private notification: NotificationService
+    private notification: NotificationService,
+
   ){
     this.subjectService.loadSubject()
     this.subject = this.subjectService.getSubject()

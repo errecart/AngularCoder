@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
 import { TitleDirective } from './utils/directives/title.directive';
 import { FullNamesPipe } from './utils/pipes/full-names.pipe';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,10 @@ import { FullNamesPipe } from './utils/pipes/full-names.pipe';
     MatTableModule,
     TitleDirective,
     FullNamesPipe,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+
+
   ]
 })
 export class SharedModule { }

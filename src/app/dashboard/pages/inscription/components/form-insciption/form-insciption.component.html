@@ -1,0 +1,49 @@
+<div mat-dialog-content>
+    <form class="formList flex flex-column" [formGroup]="formModel">
+        <h1 mat-dialog-title appTitle>{{editInscription ? 'Edit Inscription': 'Create Inscription'}}</h1>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input  
+                autocomplete="off"
+                formControlName="name"
+                matInput type="text"
+                name="name"
+            >
+            <mat-error *ngIf="nameControl.hasError('required')">This field is required</mat-error>
+            <mat-error *ngIf="nameControl.hasError('minlength')">The name must be greater than 3 characters</mat-error>
+            <mat-error *ngIf="nameControl.hasError('maxlength')">Student's name must not exceed 8 characters</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Last-Name</mat-label>
+            <input 
+                autocomplete="off"
+                formControlName="lastname"
+                matInput type="text"
+                name="lastname"
+            >
+            <mat-error *ngIf="lastnameControl.hasError('required')"> this field is required</mat-error>
+            <mat-error *ngIf="lastnameControl.hasError('minlength')">The last-name must be greater than 5 characters</mat-error>
+            <mat-error *ngIf="lastnameControl.hasError('maxlength')">The last-name must not exceed 12 characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input  
+                autocomplete="off"
+                formControlName="email"
+                matInput type="email"
+                name="email"
+            >
+            <mat-error *ngIf="emailControl.hasError('required')"> this field is required</mat-error>
+            <mat-error *ngIf="emailControl.hasError('email')">This field is for emails only, it required a "<b>@</b>"</mat-error>
+            <mat-error *ngIf="emailControl.hasError('minlength')">The email must be greater than 8 characters excluding <b>@email.com...</b> </mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-action>
+    <button type="submit" mat-button (click)="submit()">Send</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>
