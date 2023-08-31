@@ -9,5 +9,10 @@ export interface CreateInscription{
     name:string | null
     lastname:string | null
     email:string | null
+}
 
+export interface UpdateInscription{
+    name?:string | null
+    lastname?:string | null
+    email?:string | null
 }

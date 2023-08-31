@@ -16,14 +16,13 @@ export interface PeriodicElement {
   styleUrls: ['./table-subject.component.css']
 })
 export class TableSubjectComponent {
-  public isAdmin$: Observable<any>
 
+  public isAdmin$: Observable<any>
+  
   constructor(private store: Store){
     this.isAdmin$ = this.store.select(selectAuthRole)
   }
-
   displayedColumns: string[] = ['id', 'name', 'timeW', 'price', 'actions'];
-
 
   @Input()
   dataSource: subject[] = [];

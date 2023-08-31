@@ -23,6 +23,7 @@ export class InscriptionComponent {
     ){
       this.ins$ = this.inscriptionService.getInscription()
     }
+    
 
     ngOnInit(): void {
       this.inscriptionService.loadInscription()
@@ -41,6 +42,19 @@ export class InscriptionComponent {
             this.notification.showSuccess('se cargaro las inscripciones exitosamente')
           }else {
             this.notification.showError('Se a cancelado la inscripcion')
+          }
+        }
+      })
+    }
+
+    edit(inscriptionEdit: inscription): void{
+      const dialogRef = this.matDialog.open(FormInsciptionComponent,{
+        data:inscriptionEdit
+      })
+      dialogRef.afterClosed().subscribe({
+        next:(dataUpdate)=>{
+          if(dataUpdate){
+            this.inscriptionService.updateInscriptionById(inscriptionEdit.id,dataUpdate)
           }
         }
       })

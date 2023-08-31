@@ -1,11 +1,11 @@
 <mat-nav-list class="log">
     <a routerLink="home" mat-list-item>Home</a>
-    <a routerLink="students" *ngIf="(role | async) === 'admin'" mat-list-item>Students</a>
+    <a routerLink="students" mat-list-item>Students</a>
     <a routerLink="subjects" mat-list-item>Subjects</a>
-    <a routerLink="courses" mat-list-item>Courses</a>
-    <a routerLink="categories" mat-list-item>Categories</a>
-    <a routerLink="inscription" mat-list-item>Inscription</a>
+    <a routerLink="inscription" *ngIf="(role | async) === 'admin'" mat-list-item>Inscription</a>
     <a routerLink="enrolled" mat-list-item>Enrolled</a>
     <a (click)="logOut()" class="logIn" mat-list-item>Sign off</a>
 </mat-nav-list>
+
+
 

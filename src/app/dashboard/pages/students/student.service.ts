@@ -35,8 +35,8 @@ export class StudentService {
     return this.students$
   }
 
-  getStudentById(id: number): Observable<student> {
-    return this.httpClient.get<student>(enviroment.baseApiUrl + '/students/' + id);
+  getStudentById(id: number): Observable<student[]> {
+    return this.httpClient.get<student[]>(enviroment.baseApiUrl + `/students?id=${id}`);
   }
 
   createStudent(student: createStudentData): void {

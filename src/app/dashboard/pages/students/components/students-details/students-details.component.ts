@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../../student.service';
 import { student } from '../../models/indexStu';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-students-details',
@@ -10,31 +10,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./students-details.component.css']
 })
 export class StudentsDetailsComponent implements OnInit {
-  studentDetails$: Observable<student>;
-  
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private studentService: StudentService
-  ){
-    let student = this.activateRoute.snapshot.params['id']
-    this.studentDetails$ = this.studentService.getStudentById(student)
-    console.log(this.studentDetails$);
-    console.log(student);
-    
+    private studentService: StudentService,
+  ){}
 
-    if(!Number(this.activateRoute.snapshot.params['id'])){
-      this.router.navigate(['/error404']); 
-    }  
-  }
+  studentDetail: student[] = []
+  studentId = this.activateRoute.snapshot.params['id']
   
-
   ngOnInit(): void {
-    // this.activateRoute.params.subscribe(params =>{
-    //   this.studentId = params['id']
-    //   this.studentService.getStudentById(this.studentId).subscribe(data=>{
-    //     this.studentDetails$ = data
-    //   })
-    // })
+    if(!Number(this.studentId)){
+      this.router.navigate(['../../../mocks/error404']);
+    }else{
+      this.studentService.getStudentById(this.studentId).subscribe({
+        next:(data) => this.studentDetail = data
+      })
+    }
   }
 }

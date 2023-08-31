@@ -22,7 +22,7 @@
                 name="timeW"
             >
             <mat-error *ngIf="timeWControl.hasError('required')">This field is required</mat-error>
-            <mat-error *ngIf="timeWControl.hasError('minlength')">A complete schedule is needed, example: 2:00 hrs</mat-error>
+            <mat-error *ngIf="timeWControl.hasError('minlength')">A complete schedule is needed, example: 2:00hrs</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -36,6 +36,34 @@
             <mat-error *ngIf="priceControl.hasError('min')">price need to be higher than USD$10</mat-error>
             <mat-error *ngIf="priceControl.hasError('required')"> this field is required</mat-error>
         </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Image</mat-label>
+            <input 
+                autocomplete="off"
+                formControlName="image"
+                matInput type="text"
+                name="image"
+                placeholder="its has to be a link for the photo"
+            >
+            <mat-error *ngIf="priceControl.hasError('required')"> this field is required</mat-error>
+        </mat-form-field>
+
+        
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea 
+            matInput placeholder="Description of the subject"
+            autocomplete="off"
+            formControlName="description"
+            matInput type="text"
+            name="description"
+            ></textarea>
+
+            <mat-error *ngIf="timeWControl.hasError('required')">This field is required</mat-error>
+        </mat-form-field>
+
+        
 
 
     </form>

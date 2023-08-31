@@ -3,15 +3,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { student } from '../../models/indexStu';
 
+// interface studentForm{
+//   name: FormControl<string | null>
+//   lastname: FormControl<string | null>
+//   password: FormControl<string | null>
+//   age: FormControl<number | null>
+//   email: FormControl<string | null>
+//   token: FormControl<string | null>
+//   role: FormControl<'admin' | 'student'>
+// }
 
-interface StudentModel {
-  name:FormControl<string | null>;
-  lastname:FormControl<string | null>;
-  age:FormControl<number | null>;
-  password:FormControl<string| null>;
-  email:FormControl<string | null>;
-  token: FormControl<string | null>
-}
+
 
 @Component({
   selector: 'app-form',
@@ -20,23 +22,21 @@ interface StudentModel {
 })
 export class FormComponent {
   editStudent?: student
-  public nameControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);  
-  public lastnameControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(5),Validators.maxLength(12)]);
-  public ageControl = new FormControl<number | null>(null,[Validators.required,Validators.min(15)]);
-  public passwordControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(8),Validators.maxLength(16)]);
-  public emailControl = new FormControl<string | null>('', [Validators.required,Validators.email,Validators.minLength(10)]);
-  public roleControl = new FormControl<string | null>(null, Validators.required)
-  public tokenControl = new FormControl<string | null>('')
+  nameControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(3)]);  
+  lastnameControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(5),Validators.maxLength(12)]);
+  ageControl = new FormControl<number | null>(null,[Validators.required,Validators.min(15)]);
+  passwordControl = new FormControl<string | null>('',[Validators.required,Validators.minLength(8),Validators.maxLength(16)]);
+  emailControl = new FormControl<string | null>('', [Validators.required,Validators.email,Validators.minLength(10)]);
+  roleControl = new FormControl<string| null>(null, [Validators.required]); 
   
-  formModel: FormGroup<StudentModel> = new FormGroup({
+  formModel = new FormGroup({
     name: this.nameControl,
     lastname: this.lastnameControl,
     age: this.ageControl,
     password: this.passwordControl,
     email: this.emailControl,
-    token: this.tokenControl
+    role: this.roleControl
   });
-    textForm: any;
 
   constructor(
     private dialogRef: MatDialogRef<FormComponent>,
@@ -58,6 +58,12 @@ export class FormComponent {
     if(this.formModel.invalid){
       this.formModel.markAllAsTouched()
     }else{
+      const data: any = {
+        ...this.formModel.value
+      }
+      if (this.editStudent) {
+        data['token'] = this.editStudent.token;
+      }
       this.dialogRef.close(this.formModel.value)
     }
   }

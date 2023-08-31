@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
-import { CreateInscription, inscription } from './models/indexIns';
+import { CreateInscription, UpdateInscription, inscription } from './models/indexIns';
 import { HttpClient } from '@angular/common/http';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { enviroment } from 'src/enviroments/envirotent';
@@ -49,6 +49,12 @@ export class InscriptionService {
           this._inscription$.next(newArr);
         }
       })
+  }
+
+  updateInscriptionById(id: number, newArray: UpdateInscription): void{
+    this.httpClient.put(enviroment.baseApiUrl + '/inscriptions/' + id, newArray).subscribe({
+      next: () => this.loadInscription(),
+    })
   }
 
   deleteById(id: number): void{

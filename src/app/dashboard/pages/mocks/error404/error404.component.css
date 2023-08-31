@@ -1,0 +1,13 @@
+.card{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-component h2{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: black;
+}

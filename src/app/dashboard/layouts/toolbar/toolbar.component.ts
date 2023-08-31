@@ -16,7 +16,6 @@ export class ToolbarComponent {
 
   constructor(
     private router: Router,
-    private activateRoute: ActivatedRoute,
     private authService: AuthService,
     private store: Store
   ){

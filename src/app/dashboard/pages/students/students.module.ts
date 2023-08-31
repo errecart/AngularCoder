@@ -8,7 +8,6 @@ import { StudentsDetailsComponent } from './components/students-details/students
 import { RouterModule } from '@angular/router';
 import { StudentsRoutingModule } from './students-routing.module';
 
-
 @NgModule({
   declarations: [
     StudentsComponent,
@@ -22,16 +21,10 @@ import { StudentsRoutingModule } from './students-routing.module';
     SharedModule,
     RouterModule,
     StudentsRoutingModule,
-    
+
   ],
   exports:[
     StudentsComponent
-  ],
-  // providers:[
-  //   {
-  //     provide:StudentService,
-  //     useClass:StudentMockService
-  //   }
-  // ]
+  ]
 })
-export class StudentsModule { }
+export class StudentsModule {}

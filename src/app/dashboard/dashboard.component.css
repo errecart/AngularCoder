@@ -11,34 +11,6 @@
     padding: 20px;
     width: 15rem;
 }
-
-.formList{
-    display: flex;
-    flex-direction: column;
-    background-color: aquamarine;
-    height: 400px;
-    width: 400px;
-    border-radius: 8px;
-    margin-left: 4rem;
-}
-
-.formList input, label{
-    margin-left: 2rem;
-    width: 250px;
-    margin-top: .8rem;
-}
-
-.formList button{
-    width: 150px;
-    margin:1rem  2rem;
-    background-color: rgb(240, 155, 9);
-    border-radius: 8px;
-}
-
-.formList pre,.formList h4{
-    margin-left: 2rem;
-}
-
 main{
     min-height: calc(100vh - 64px) ;
 }

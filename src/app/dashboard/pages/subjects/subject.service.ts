@@ -7,6 +7,7 @@ import { enviroment } from 'src/enviroments/envirotent';
 import { subject, subjectCreate, updateSubjectData } from './models/indexSub';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +37,11 @@ export class SubjectService {
     return this.subject$
   }
 
+  getSubjectById(id: number): Observable<subject[]> {
+    return this.httpClient.get<subject[]>(enviroment.baseApiUrl + `/subjects?id=${id}`);
+  }
+
+
   createSubject(subject: subjectCreate): void{
     const token = random(5)
     this.httpClient.post<subject>(enviroment.baseApiUrl + '/subjects/',{...subject, token})
@@ -53,14 +59,14 @@ export class SubjectService {
     })
   }
 
-  updateSubjectById(id:number, newData:updateSubjectData): void{
-    this.httpClient.post<subject>(enviroment.baseApiUrl + '/subjects/' + id, newData).subscribe({
-      next:()=> this.loadSubject()
+  updateSubjectById(id: number, newArray: updateSubjectData): void{
+    this.httpClient.put(enviroment.baseApiUrl + '/subjects/' + id, newArray).subscribe({
+      next: () => this.loadSubject(),
     })
   }
 
   deleteSubjectById(id:number):void{
-    this.httpClient.delete(enviroment.baseApiUrl + '/students/' + id)
+    this.httpClient.delete(enviroment.baseApiUrl + '/subjects/' + id)
     .pipe(
       mergeMap(() => this.subject$.pipe(
         take(1), 
@@ -73,9 +79,4 @@ export class SubjectService {
     })
   }
 
-  getSubjectByCategoryId(categoryId: number): Observable<subject[]> {
-    return this.httpClient.get<subject[]>(enviroment.baseApiUrl + `/subjects?categoryId=${categoryId}`)
-  }
-
-  
 }

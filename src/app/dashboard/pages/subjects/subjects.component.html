@@ -1,4 +1,4 @@
-<button  class="m-5" (click)="createSubject()" mat-flat-button color="primary" type="button">
+<button class="m-5" [disabled]=" !(isAdmin$ | async)" (click)="createSubject()" mat-flat-button color="primary" type="button">
     <mat-icon>add</mat-icon>
     Create Subject
 </button>

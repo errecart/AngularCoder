@@ -1,27 +1,30 @@
 export interface student{
-    id: number
-    name: string
-    lastname: string
-    password: string
-    age: number
-    email: string
-    token: string
-    role: "admin" | "student"
+    id: number,
+    name: string,
+    lastname: string,
+    password: string,
+    age: number,
+    email: string,
+    token: string,
+    role: 'admin' | 'student'
 }
 
+
 export interface createStudentData{
-    name: string
-    lastname: string
-    password: string
-    age: number
-    email: string
+    name: string,
+    lastname: string,
+    password: string,
+    age: number,
+    email: string,
+    role: 'admin' | 'student'
 }
 
 export interface updateStudentData{
-    name?: string
-    lastname?: string
-    password?: string
-    age?: number
-    email?: string 
-    token?: string
+    name?: string,
+    lastname?: string,
+    password?: string 
+    age?: number,
+    email?: string,
+    token?: string,
 }
+

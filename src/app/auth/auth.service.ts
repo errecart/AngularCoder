@@ -14,9 +14,6 @@ import { selectAuthStudent } from '../store/auth/auth.selector';
   providedIn: 'root'
 })
 export class AuthService {
-  // private _authstudent$ = new BehaviorSubject<student | null>(null);
-  // public authstudent$ = this._authstudent$.asObservable();
-
   public authstudent$ = this.store.select(selectAuthStudent);
 
   constructor(
@@ -49,13 +46,11 @@ export class AuthService {
       next:(resp) =>{
         if(resp.length){
           const authStudent = resp[0]
-          // this._authstudent$.next(authStudent)
           this.store.dispatch(authAction.setAuthStudent({data: authStudent}))
           this.router.navigate(['/dashboard']);
           localStorage.setItem('token',authStudent.token)
         }else{
           this.notification.showError('email or password invalid, you cant pass');
-          // this._authstudent$.next(null);
           this.store.dispatch(authAction.setAuthStudent({data: null}))
         }
       },
