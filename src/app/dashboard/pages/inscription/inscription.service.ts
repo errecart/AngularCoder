@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
 import { CreateInscription, UpdateInscription, inscription } from './models/indexIns';
 import { HttpClient } from '@angular/common/http';
 import { NotificationService } from 'src/app/core/service/notification.service';
-import { enviroment } from 'src/enviroments/envirotent';
+import { enviroment } from 'src/enviroments/enviroment';
 import { random } from 'src/app/shared/utils/helps';
 
 @Injectable({

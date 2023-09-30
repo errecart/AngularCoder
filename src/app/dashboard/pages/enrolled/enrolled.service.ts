@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, mergeMap, take } from 'rxjs';
-import { enviroment } from 'src/enviroments/envirotent';
+import { enviroment } from 'src/enviroments/enviroment';
 import { enrolled } from './model/indexEn';
 
 @Injectable({

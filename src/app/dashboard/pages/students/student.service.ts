@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, mergeMap,take } from 'rxjs';
 import { NotificationService } from 'src/app/core/service/notification.service';
 import { random } from 'src/app/shared/utils/helps';
-import { enviroment } from 'src/enviroments/envirotent';
+import { enviroment } from 'src/enviroments/enviroment';
 import { createStudentData, student, updateStudentData } from './models/indexStu';
 
 

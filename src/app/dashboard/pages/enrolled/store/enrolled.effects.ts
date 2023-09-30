@@ -5,7 +5,7 @@ import { Observable, EMPTY, of } from 'rxjs';
 import { EnrolledActions } from './enrolled.actions';
 import { HttpClient } from '@angular/common/http';
 import { createEnrolledData, enrolled, enrolledSyI } from '../model/indexEn';
-import { enviroment } from 'src/enviroments/envirotent';
+import { enviroment } from 'src/enviroments/enviroment';
 import { InscriptionService } from '../../inscription/inscription.service';
 import { inscription } from '../../inscription/models/indexIns';
 import { subject } from '../../subjects/models/indexSub';
