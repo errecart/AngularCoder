@@ -7,8 +7,7 @@ import { selectAuthRole } from 'src/app/store/auth/auth.selector';
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+  templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent {
 

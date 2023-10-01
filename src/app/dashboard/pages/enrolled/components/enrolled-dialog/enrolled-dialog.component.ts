@@ -10,8 +10,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-enrolled-dialog',
-  templateUrl: './enrolled-dialog.component.html',
-  styleUrls: ['./enrolled-dialog.component.css']
+  templateUrl: './enrolled-dialog.component.html'
 })
 export class EnrolledDialogComponent implements OnInit {
 

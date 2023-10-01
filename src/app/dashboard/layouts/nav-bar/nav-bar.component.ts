@@ -9,8 +9,7 @@ import { student } from '../../pages/students/models/indexStu';
 
 @Component({
   selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  templateUrl: './nav-bar.component.html'
 })
 export class NavBarComponent {
   @Input()

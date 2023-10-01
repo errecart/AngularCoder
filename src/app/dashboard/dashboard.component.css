@@ -15,9 +15,5 @@ main{
     min-height: calc(100vh - 64px) ;
 }
 
-mat-mdc-dialog-surface 
-mdc-dialog__surface{
-    overflow: hidden !important;
-}
 
 

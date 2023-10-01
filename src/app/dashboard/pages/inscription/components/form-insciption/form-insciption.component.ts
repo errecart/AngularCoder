@@ -12,8 +12,7 @@ interface InscriptionModel {
 
 @Component({
   selector: 'app-form-insciption',
-  templateUrl: './form-insciption.component.html',
-  styleUrls: ['./form-insciption.component.css']
+  templateUrl: './form-insciption.component.html'
 })
 export class FormInsciptionComponent {
   editInscription?: inscription
