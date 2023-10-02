@@ -1,9 +1,11 @@
+
+
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 
 interface CustomNotification{
-  type: 'success' | 'error' | 'info';
+  type: 'success' | 'error';
   title: string;
   message: string;
   button?: 'confirmButtonText' & 'showCancelButton'
@@ -41,15 +43,6 @@ private notification$ = new Subject<CustomNotification>()
       type: 'error',
       message,
       title,
-    });
-  };
-
-  showNotification(message:string,title = 'Opcion'): void{
-    this.notification$.next({
-      type: 'info',
-      message,
-      title,
-      
     });
   };
 

@@ -34,8 +34,6 @@ import {MatSelectModule} from '@angular/material/select';
     FullNamesPipe,
     MatListModule,
     MatSelectModule,
-
-
   ]
 })
 export class SharedModule { }

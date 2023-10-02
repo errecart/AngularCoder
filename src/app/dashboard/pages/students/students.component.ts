@@ -64,7 +64,7 @@ export class StudentsComponent {
   };
 
   onDeleteStudent(studentToDelete: student): void{
-    const note = this.notification.showNotification(`Are you sure you want to eliminate ${studentToDelete.name}`)
+    const note = confirm(`Are you sure you want to eliminate ${studentToDelete.name}`)
     if({note}){
         this.studentService.deleteStudentById(studentToDelete.id)
       }
